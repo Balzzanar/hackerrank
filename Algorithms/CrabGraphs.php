@@ -1,14 +1,15 @@
 <?php
+require_once("Logger.php");
+define("LOGGING", true);
+
 ######################################################################
 # 
 # https://www.hackerrank.com/challenges/crab-graphs
 ######################################################################
 
 
-define("LOGGING", true);
+
 $logger = new Logger;
-
-
 
 $handle = fopen ("php://stdin","r");
 $logger->log("Testcases: ");
@@ -25,8 +26,6 @@ $arr = explode(" ",$arr_temp);
 array_walk($arr,'intval');
 
 
-
-
 /**
  * @name read_testcase
  * @return Testcase
@@ -39,12 +38,8 @@ function read_testcase()
 	$testcase->Read($handle);
 }
 
-
-
 /**
 * @name Testcase
-* 
-* 
 * 
 */
 class Testcase
@@ -71,8 +66,6 @@ class Testcase
 		$this->read_grapth_setup();
 	}
 
-
-
 	/**
 	 * @name read_grapth
 	 */
@@ -89,32 +82,4 @@ class Testcase
 	}
 }
 
-
-
-/**
-* @name Logger
-* 
-* 
-* 
-*/
-class Logger
-{
-	/**
-	 * @name log
-	 * @param string  
-	 */
-	public function Log($tolog)
-	{
-		if (! LOGGING)
-		{
-			return;
-		}
-		if (is_array($tolog) || is_object($tolog))
-		{
-			print_r($tolog);
-			return;
-		}
-		printf($tolog);
-	}
-}
 ?>
