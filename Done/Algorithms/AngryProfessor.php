@@ -1,7 +1,7 @@
 <?php
 class Logger{public function Log($tolog){}}
-#require_once("../Algorithms/Logger.php");
-define("LOGGING", false);
+#require_once("../../Logger.php");
+define("LOGGING", true);
 $logger = new Logger;
 #################################################################
 # Angry Professor
@@ -13,6 +13,8 @@ $logger = new Logger;
 #    -1 -3 4 2
 #    4 2
 #    0 -1 2 1
+#
+#
 #################################################################
 
 $handle = fopen ("php://stdin","r");
@@ -32,6 +34,7 @@ for($a0 = 0; $a0 < $testcases; $a0++)
     $arrival_times = fgets($handle);
     $arrival_times = explode(" ", $arrival_times);
 
+    $logger->log("Threshold: ".$threshold."\n");
     if (calc($arrival_times) >= $threshold)
     {
     	printf("NO\n");
@@ -48,7 +51,7 @@ function calc($list_students)
 	$attend = 0;
 	foreach ($list_students as $student)
 	{
-		if ($student >= 0)
+		if ($student <= 0)
 		{
 			$attend += 1;
 		}
