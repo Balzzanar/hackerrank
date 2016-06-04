@@ -2,7 +2,8 @@
 
 /**
 * @name Logger
-* 
+*
+* Help class, dose belong to all projects
 */
 class Logger
 {

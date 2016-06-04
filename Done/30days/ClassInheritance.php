@@ -1,4 +1,9 @@
 <?php
+#################################################################
+# Day 4 
+#
+# https://www.hackerrank.com/challenges/30-class-vs-instance
+#################################################################
 class Person{
     public $age;
     public function __construct($initialAge)
