@@ -1,6 +1,6 @@
 <?php
-#class Logger{public function Log($tolog){}}
-require_once("../../Logger.php");
+class Logger{public function Log($tolog){}}
+#require_once("../../Logger.php");
 define("LOGGING", false);
 $logger = new Logger;
 #################################################################
@@ -10,13 +10,46 @@ $logger = new Logger;
 #
 #################################################################
 
+$phonebook = array();
+$lookups = array();
 $handle = fopen ("php://stdin","r");
 
-$logger->log("Testcases: ");
-fscanf($handle,"%d",$testcases);
-for($a0 = 0; $a0 < $testcases; $a0++)
+$logger->log("Entries: ");
+fscanf($handle,"%d",$entries);
+while (trim(($str = fgets($handle))) != "") 
 {
-	$str = fgets($handle);
+	handle_input(trim($str));
+}
+$logger->log($phonebook);
+
+
+function handle_input($input)
+{
+	global $phonebook;
+	//global $lookups;
+
+	$arr = explode(" ", $input);
+	if (count($arr) > 1)
+	{
+		$phonebook[$arr[0]] = $arr[1];
+		return;
+	}
+	//$lookups[] = $input;
+	printf("%s\n", lookup_name($input));
+}
+
+
+function lookup_name($name)
+{
+	global $phonebook;
+	if (array_key_exists($name, $phonebook))
+	{
+		return $name . "=" . $phonebook[$name];
+	}
+	else 
+	{
+		return "Not found";
+	}
 }
 
 ?>
